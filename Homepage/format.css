@@ -122,10 +122,30 @@ header, footer {
     max-width: 50%;
     height: auto;    /* Maintains aspect ratio */
     margin-top: 10px; /* Adds space above images */
+    
 }
 .post-list article time {
     display: block; /* Makes the time element take up its own line */
-    margin-top: 10px; /* Adds space above the timestamp */
-    font-size: 0.9em; /* Makes the timestamp slightly smaller */
+    margin-top: 10px; 
+    font-size: 0.9em; 
     color: #666; /* Gives the timestamp a lighter color */
+}
+
+
+/*like button stylization*/
+.like-btn {
+    display: block; /* Makes the button take up its own line */
+    background: none;/* empty color */
+    border: 1px solid #e94560; /* red border */
+    color: #e94560; /* red text */
+    padding: 0.4rem 1rem; /*some small padding */
+    border-radius: 20px;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.like-btn.liked {/* Style for liked state */
+    background-color: #e94560;
+    color: white;
 }
