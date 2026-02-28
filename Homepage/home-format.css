@@ -38,16 +38,10 @@ nav {
   color: #e94560;
 }
 
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 5rem 2rem;
-  background-color: #f0f0f0;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+/* Active link styling */
+.nav-links a.active {
+  color: #e94560;
+  font-weight: bold;
 }
 
 button {
