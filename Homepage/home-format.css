@@ -104,6 +104,7 @@ header, footer {
 .post-list li {
     margin-bottom: 20px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
+    border-radius: 20px;
     padding: 15px;
 
 }
