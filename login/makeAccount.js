@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Show / hide form fields depending on type of user
     userType.addEventListener("change", async function () {
-  
+
+        localStorage.setItem("account-type", this.value);
       if (this.value === "government") {
         govFields.style.display = "block";
         citizenFields.style.display = "none";
