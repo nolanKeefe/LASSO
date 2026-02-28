@@ -7,6 +7,10 @@
 body {
   font-family: Arial, sans-serif;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Makes body fill the full screen height */
+  overflow: hidden; /* Prevents the whole page from scrolling */
 }
 
 /* Navigation */
@@ -76,12 +80,6 @@ footer {
   color: white;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Makes body fill the full screen height */
-  overflow: hidden; /* Prevents the whole page from scrolling */
-}
 
 header, footer {
   flex-shrink: 0; /* Stops header/footer from shrinking */
@@ -94,4 +92,60 @@ header, footer {
   max-width: 800px; /* Controls the width of the content */
   width: 100%;
   margin: 0 auto; /* Centers it horizontally */
+}
+
+/* Post Stylization */
+.post-list {
+    list-style: none; /* Removes bullet points */
+    padding: 0;      /* Removes left padding */
+    margin: 0;       /* Removes margins */
+}
+
+.post-list li {
+    margin-bottom: 20px; /* Adds space between list items */
+    border: 2px solid #000000; /* adds a border around each post */
+    padding: 15px;
+
+}
+
+.post-list article h2 a{
+    text-decoration: none; /* Removes the default underline from links */
+    color: #333;
+}
+
+.post-list article p {
+    line-height: 1.4; /* Improves readability */
+}
+
+.post-list article img {
+    /* Ensures images don't overflow their container */
+    max-width: 50%;
+    height: auto;    /* Maintains aspect ratio */
+    margin-top: 10px; /* Adds space above images */
+    
+}
+.post-list article time {
+    display: block; /* Makes the time element take up its own line */
+    margin-top: 10px; 
+    font-size: 0.9em; 
+    color: #666; /* Gives the timestamp a lighter color */
+}
+
+
+/*like button stylization*/
+.like-btn {
+    display: block; /* Makes the button take up its own line */
+    background: none;/* empty color */
+    border: 1px solid #e94560; /* red border */
+    color: #e94560; /* red text */
+    padding: 0.4rem 1rem; /*some small padding */
+    border-radius: 20px;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.like-btn.liked {/* Style for liked state */
+    background-color: #e94560;
+    color: white;
 }

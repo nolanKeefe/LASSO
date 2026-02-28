@@ -1,14 +1,30 @@
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+        });
     });
-  });
 });
 
 // Button interaction
-document.getElementById('cta-btn').addEventListener('click', () => {
-  alert('Welcome! Let\'s get started.');
+
+document.querySelectorAll('.like-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const countSpan = this.querySelector('.like-count');
+        let count = parseInt(countSpan.textContent);
+
+        if (this.classList.contains('liked')) {
+        // Unlike
+            countSpan.textContent = count - 1;
+            this.innerHTML = `♡ <span class="like-count">${count - 1}</span>`;
+            this.classList.remove('liked');
+        } else {
+            // Like
+            countSpan.textContent = count + 1;
+            this.innerHTML = `♥ <span class="like-count">${count + 1}</span>`;
+            this.classList.add('liked');
+        }
+    });
 });
