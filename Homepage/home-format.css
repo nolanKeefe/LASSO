@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color:antiquewhite
 }
 
 body {
@@ -111,7 +110,6 @@ header, footer {
 
 .post-list article p {
     line-height: 1.4; /* Improves readability */
-    color:#000000;
 }
 
 .post-list article img {
