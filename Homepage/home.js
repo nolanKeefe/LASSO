@@ -1,6 +1,46 @@
 const list = document.getElementById("post-list");
+const add_post_button = document.getElementById("add-post");
+
+
 //appends a post to the running list
-function addpost(){
+function addPost(){
+    let title = "Test";
+    let link = "";
+    let summary = "LUrasdf, ASfd Ipsum MOrebaginsd."
+    const ul = document.getElementById("post-list");
+
+    const li = document.createElement("li");
+
+    const article = document.createElement("article");
+
+    const h2 = document.createElement("h2");
+    const a = document.createElement("a");
+    a.href = link;
+    a.textContent = title;
+    h2.appendChild(a);
+
+    const time = document.createElement("time");
+    //time.dateTime = new Date();
+    time.textContent = new Date().toLocaleDateString();
+
+    const p = document.createElement("p");
+    p.textContent = summary;
+
+    const button = document.createElement("button");
+    button.className = "like-btn";
+
+    const heartspan = document.createElement("span");
+    heartspan.className = "heart";
+    heartspan.textContent = "♡";
+    button.appendChild(heartspan);
+    const countspan = document.createElement("span");
+    countspan.className = "like-count";
+    countspan.textContent = "0";
+    button.appendChild(countspan);
+
+    article.append(h2, time, p, button);
+    li.appendChild(article);
+    ul.appendChild(li);
 
 }
 // Smooth scroll for nav links
@@ -12,8 +52,30 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         });
     });
 });
+document.addEventListener('click', function (e) {
+    if (e.target.closest('.like-btn')) {
+
+        const button = e.target.closest('.like-btn');
+        const countSpan = button.querySelector('.like-count');
+        const heart = button.querySelector('.heart');
+
+        let count = parseInt(countSpan.textContent);
+
+        if (button.classList.contains('liked')) {
+            heart.textContent = '♡';
+            count--;
+            button.classList.remove('liked');
+        } else {
+            heart.textContent = '♥';
+            count++;
+            button.classList.add('liked');
+        }
+
+        countSpan.textContent = count;
+    }
+});
 // Button interaction
-document.querySelectorAll('.like-btn').forEach(button => {
+/*document.querySelectorAll('.like-btn').forEach(button => {
     button.addEventListener('click', function () {
         const countSpan = this.querySelector('.like-count');
         let count = parseInt(countSpan.textContent);
@@ -30,4 +92,7 @@ document.querySelectorAll('.like-btn').forEach(button => {
             this.classList.add('liked');
         }
     });
-});
+});*/
+add_post_button.addEventListener("click", function () {
+    addPost();
+})
