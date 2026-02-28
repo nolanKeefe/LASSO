@@ -1,3 +1,8 @@
+const list = document.getElementById("post-list");
+//appends a post to the running list
+function addpost(){
+
+}
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
@@ -7,9 +12,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         });
     });
 });
-
 // Button interaction
-
 document.querySelectorAll('.like-btn').forEach(button => {
     button.addEventListener('click', function () {
         const countSpan = this.querySelector('.like-count');

@@ -50,7 +50,7 @@ nav {
   margin-bottom: 1rem;
 }
 
-button {
+.like-btn {
   margin-top: 1.5rem;
   padding: 0.75rem 2rem;
   background-color: #e94560;
@@ -61,7 +61,7 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
+.like-btn:hover {
   background-color: #c73652;
 }
 
