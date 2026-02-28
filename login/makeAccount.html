@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Make An Account</title>
+</head>
+<body>
+
+  <div class="make-account-container">
+    <h2>Create an Account</h2>
+
+    <p>Are You Making a Citizen or Government Account?</p>
+
+    <select id="userType" required>
+      <option value="">Please Select One</option>
+      <option value="government">Government</option>
+      <option value="citizen">Citizen</option>
+    </select>
+
+
+    <!-- Government-only field -->
+    <br>
+    <div id="governmentFields" style="display:none;">
+      <input type="text" id="cityInput" placeholder="City" />
+      <input type="text" id="stateInput" placeholder="State" />
+    </div>
+    <br>
+
+    <!-- Citizen-only field -->
+    <div id="citizenFields" style="display:none;">
+      <select id="citySelect">
+        <option value="">City</option>
+        <option value="Newark">Newark</option>
+        <option value="Hackensack">Hackensack</option>
+      </select>
+      <select id="stateSelect">
+        <option value="">State</option>
+        <option value="Delaware">Delaware</option>
+        <option value="New Jersey">New Jersey</option>
+      </select>
+    </div>
+    
+    <br>
+
+    <form id="makeAccountForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button id="createAccountButton" type="submit">Make Account</button>
+    </form>
+
+    <p id="errorMessage" class="error"></p>
+  </div>
+
+  <script src="makeAccount.js"></script>
+</body>
+</html>
