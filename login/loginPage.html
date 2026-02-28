@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--Login Container-->
+  <div class="login-container">
+    <h2>Login</h2>
+
+  <!--Login Form with Email and Password-->
+    <form id="loginForm">
+      <input 
+        type="email" 
+        id="email" 
+        placeholder="Email" 
+        required
+      />
+
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Password" 
+        required
+      />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <!--Navigate to Sign Up Page-->
+    <br>
+    <h2>Make an Account</h2>
+    <p>Don't have an account?</p>
+    <button id="makeAccountButton" type="click">Make Account</button>
+
+    <p id="errorMessage" class="error"></p>
+  </div>
+
+  <script src="loginPage.js"></script>
+</body>
+</html>
