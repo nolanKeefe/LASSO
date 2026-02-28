@@ -4,6 +4,7 @@ const add_post_button = document.getElementById("add-post");
 
 //appends a post to the running list
 function addPost(){
+    // Placeholder data for the post
     let title = "Test";
     let link = "";
     let summary = "LUrasdf, ASfd Ipsum MOrebaginsd."
@@ -13,22 +14,26 @@ function addPost(){
 
     const article = document.createElement("article");
 
+    // Title of the post
     const h2 = document.createElement("h2");
     const a = document.createElement("a");
     a.href = link;
     a.textContent = title;
     h2.appendChild(a);
 
+    // Date of the post
     const time = document.createElement("time");
-    //time.dateTime = new Date();
     time.textContent = new Date().toLocaleDateString();
 
+    //Summary of the post
     const p = document.createElement("p");
     p.textContent = summary;
 
+    // Like button creation
     const button = document.createElement("button");
     button.className = "like-btn";
 
+    //Visuals of the like button
     const heartspan = document.createElement("span");
     heartspan.className = "heart";
     heartspan.textContent = "♡";
@@ -38,29 +43,35 @@ function addPost(){
     countspan.textContent = "0";
     button.appendChild(countspan);
 
+
     article.append(h2, time, p, button);
     li.appendChild(article);
     ul.appendChild(li);
 
 }
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+// Smooth scroll for nav links we aren't using it though so I commented it out
+/*document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
         });
     });
-});
+});*/
+
 document.addEventListener('click', function (e) {
     if (e.target.closest('.like-btn')) {
+        //check if the clicked button is like button
 
+        // Get the button, count span, and heart span
         const button = e.target.closest('.like-btn');
         const countSpan = button.querySelector('.like-count');
         const heart = button.querySelector('.heart');
 
+        // read current like count
         let count = parseInt(countSpan.textContent);
 
+        // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('liked')) {
             heart.textContent = '♡';
             count--;
@@ -70,7 +81,7 @@ document.addEventListener('click', function (e) {
             count++;
             button.classList.add('liked');
         }
-
+        // Update the like count display
         countSpan.textContent = count;
     }
 });
