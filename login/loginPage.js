@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
       } catch (error) {
         errorMessage.textContent = error.message;
       }*/
+
+      window.location.href = "../Homepage/home.html";
     });
   
     makeAccountButton.addEventListener("click", function () {
