@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+    //listens to inputs from the Make Account Page/form
     const form = document.getElementById("makeAccountForm");
     const errorMessage = document.getElementById("errorMessage");
   
@@ -29,24 +29,24 @@ document.addEventListener("DOMContentLoaded", function () {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
   
+      //city value type changes depending on user type
       let city;
-  
       if (userType.value === "government") {
         city = document.getElementById("cityInput").value;
       } else {
         city = document.getElementById("citySelect").value;
       }
   
-
+     //state value type changes depending on user type
       let state;
-  
       if (userType.value === "government") {
-        city = document.getElementById("stateInput").value;
+        state = document.getElementById("stateInput").value;
       } else {
-        city = document.getElementById("stateSelect").value;
+        state = document.getElementById("stateSelect").value;
       }
       alert("Account created successfully!");
 
+      //navigate to the log in page after the account is made
       window.location.href = "loginPage.html";
     });
   

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //listens to the form to see if log in button is clicked and if field values are changed 
     const form = document.getElementById("loginForm");
     const errorMessage = document.getElementById("errorMessage");
   
@@ -26,16 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Store token (if using JWT)
         localStorage.setItem("token", data.token);
   
-        // Redirect
-        window.location.href = "dashboard.html";
-  
       } catch (error) {
         errorMessage.textContent = error.message;
       }*/
 
+      //redirect to home page after logging in 
       window.location.href = "../Homepage/home.html";
     });
   
+    //redirect to sign up page if Make Account Button is clicked
     makeAccountButton.addEventListener("click", function () {
       window.location.href = "makeAccount.html";
     });
