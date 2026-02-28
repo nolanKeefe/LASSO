@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Make An Account</title>
 </head>
 <body>
 
-  <div class="login-container">
-    <h2>Login</h2>
+  <div class="make-account-container">
+    <h2>Create an Account</h2>
 
-    <form id="loginForm">
+    <form id="makeAccountForm">
       <input 
         type="email" 
         id="email" 
         placeholder="Email" 
+        required
+      />
+
+      <input 
+        type="text" 
+        id="city" 
+        placeholder="City" 
         required
       />
 
@@ -23,16 +30,12 @@
         required
       />
 
-      <button type="submit">Login</button>
+      <button type="submit">Make Account</button>
     </form>
-
-    <h2>Make an Account</h2>
-    <p>Don't have an account?</p>
-    <button id="makeAccountButton" type="click">Make Account</button>
 
     <p id="errorMessage" class="error"></p>
   </div>
 
-  <script src="loginPage.js"></script>
+  <script src="makeAccount.js"></script>
 </body>
 </html>
