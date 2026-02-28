@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en"><!-- Sets the page language for formatting-->
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L.A.S.S.O</title>
-  <link rel="stylesheet" href="format.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>L.A.S.S.O</title>
+        <link rel="stylesheet" href="format.css">
+    </head>
+    <body>
 
-  <header>
-    <nav><!-- Nav bar -->
-      <div class="logo">L.A.S.S.O</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#resolved">Resolved</a></li>
-        <li><a href="#settings">Settings</a></li>
-        <!-- Will make them link to pages properly soon  -->
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav><!-- Nav bar -->
+        <div class="logo">L.A.S.S.O</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#resolved">Resolved</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <!-- Will make them link to pages properly soon  -->
+        </ul>
+        </nav>
+    </header>
 
-  <main class="scroll-container">
-    <!-- Add posts here once we get posts setup -->
-    <p>Post 1</p>
-    <p>Post 2</p>
-    <footer>
-    <p>You've scrolled so far we've run out of posts!</p> <!-- footer should remain here, whatever post we have goes above -->
-    </footer>
+    <main class="scroll-container">
+        <!-- A list of posts. Unsure how jacksons making it update so im just gonna make a single post -->
+        <ul class = "posts-list">
+            <!--  Each post is an article as it makes them individually contained -->
+            <!-- image post example -->
+            <article>
+                <h2><a href="post1.html">Title of Post</a></h2> <time datetime="2026-02-28">February 28, 2026</time>
+                <!-- Placeholder image, will be replaced with actual post image -->
+                <img src="https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Post image"></img>
+    
+            </article>
+            <!-- basic text post formatting -->
+            <article>
+                <h2><a href="post2.html">Title of Post 2</a></h2> <!-- post2.html should bring you into the post -->
+                <time datetime="2026-02-27">February 27, 2026</time>
+                <p>Post summary</p>
+            </article>
+        </ul>
+        <footer>
+            <p>You've scrolled so far we've run out of posts!</p> <!-- footer should remain here, whatever post we have goes above -->
+        </footer>
+    </main>
 
   
 
