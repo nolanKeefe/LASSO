@@ -1,15 +1,4 @@
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-        });
-    });
-});
-
 // Button interaction
-
 document.querySelectorAll('.like-btn').forEach(button => {
     button.addEventListener('click', function () {
         const countSpan = this.querySelector('.like-count');
@@ -28,3 +17,4 @@ document.querySelectorAll('.like-btn').forEach(button => {
         }
     });
 });
+
