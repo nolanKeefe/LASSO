@@ -1,0 +1,94 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Page Background */
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Main Card Container */
+  .make-account-container,
+  .login-container {
+    background: white;
+    padding: 40px;
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  /* Headings */
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Paragraph text */
+  p {
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  /* Inputs & Selects */
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.2s;
+  }
+  
+  /* Focus effect */
+  input:focus,
+  select:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.3);
+  }
+  
+  /* Buttons */
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4e73df;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  button:hover {
+    background-color: #2e59d9;
+  }
+  
+  /* Secondary Button (like make account button on login page) */
+  #makeAccountButton {
+    background-color: #858796;
+  }
+  
+  #makeAccountButton:hover {
+    background-color: #6c757d;
+  }
+  
+  /* Error Message */
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+  }
