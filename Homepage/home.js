@@ -46,22 +46,27 @@ function addPost(postobject){
 
     const article = document.createElement("article");
 
+    // Title of the post
     const h2 = document.createElement("h2");
     const a = document.createElement("a");
     a.href = link;
     a.textContent = postobject.title;
     h2.appendChild(a);
 
+    // Date of the post
     const time = document.createElement("time");
     //time.dateTime = new Date();
     time.textContent = postobject.date;
 
+    //Description of the post
     const p = document.createElement("p");
     p.textContent = postobject.description;
 
+    // Like button creation
     const button = document.createElement("button");
     button.className = "like-btn";
 
+    //Visuals of the like button
     const heartspan = document.createElement("span");
     heartspan.className = "heart";
     heartspan.textContent = "♡";
@@ -87,13 +92,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 document.addEventListener('click', function (e) {
     if (e.target.closest('.like-btn')) {
+        //check if the clicked button is like button
 
+        // Get the button, count span, and heart span
         const button = e.target.closest('.like-btn');
         const countSpan = button.querySelector('.like-count');
         const heart = button.querySelector('.heart');
 
+        // read current like count
         let count = parseInt(countSpan.textContent);
 
+        // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('liked')) {
             heart.textContent = '♡';
             count--;
@@ -103,7 +112,7 @@ document.addEventListener('click', function (e) {
             count++;
             button.classList.add('liked');
         }
-
+        // Update the like count display
         countSpan.textContent = count;
     }
 });

@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color:antiquewhite
 }
 
 body {
@@ -20,8 +19,18 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #1a1a2e;
-  color: white;
+  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  color: rgb(255, 255, 255);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
 }
 
 .nav-links {
@@ -36,16 +45,16 @@ nav {
 }
 
 .nav-links a:hover {
-  color: #e94560;
+  color: rgb(117, 38, 195);
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: #e94560;
+  color: rgb(117, 38, 195);
   font-weight: bold;
 }
 
-button {
+.like-btn {
   margin-top: 1.5rem;
   padding: 0.75rem 2rem;
   background-color: #e94560;
@@ -56,6 +65,92 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
+.like-btn:hover {
   background-color: #c73652;
+}
+
+/* About Section */
+#about {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #1a1a2e;
+  color: white;
+}
+
+
+header, footer {
+  flex-shrink: 0; /* Stops header/footer from shrinking */
+}
+
+.scroll-container {
+  flex: 1; /* Takes up all remaining space between header and footer */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 1rem 2rem;
+  max-width: 800px; /* Controls the width of the content */
+  width: 100%;
+  margin: 0 auto; /* Centers it horizontally */
+}
+
+/* Post Stylization */
+.post-list {
+    list-style: none; /* Removes bullet points */
+    padding: 0;      /* Removes left padding */
+    margin: 0;       /* Removes margins */
+}
+
+.post-list li {
+    margin-bottom: 20px; /* Adds space between list items */
+    border: 2px solid #000000; /* adds a border around each post */
+    border-radius: 20px;
+    padding: 15px;
+
+}
+
+.post-list article h2 a{
+    text-decoration: none; /* Removes the default underline from links */
+    color: #333;
+}
+
+.post-list article p {
+    line-height: 1.4; /* Improves readability */
+}
+
+.post-list article img {
+    /* Ensures images don't overflow their container */
+    max-width: 50%;
+    height: auto;    /* Maintains aspect ratio */
+    margin-top: 10px; /* Adds space above images */
+    
+}
+.post-list article time {
+    display: block; /* Makes the time element take up its own line */
+    margin-top: 10px; 
+    font-size: 0.9em; 
+    color: #666; /* Gives the timestamp a lighter color */
+}
+
+
+/*like button stylization*/
+.like-btn {
+    display: block; /* Makes the button take up its own line */
+    background: none;/* empty color */
+    border: 1px solid #e94560; /* red border */
+    color: #e94560; /* red text */
+    padding: 0.4rem 1rem; /*some small padding */
+    border-radius: 20px;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.like-btn.liked {/* Style for liked state */
+    background-color: #e94560;
+    color: white;
 }
