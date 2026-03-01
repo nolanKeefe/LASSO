@@ -25,6 +25,7 @@ function addPostToFeed(postobject){
     // Like button creation
     const likebutton = document.createElement("button");
     likebutton.className = "like-btn";
+    likebutton.id = postobject.post_id;
 
     //Visuals of the like button
     const heartspan = document.createElement("span");
