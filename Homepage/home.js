@@ -2,7 +2,7 @@ const feed = document.getElementById("post-list");
 const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
 //appends a post to the running list
-let posts = [];
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
 let resolved_posts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
 function addPostToFeed(postobject){
     let link = "";
@@ -25,6 +25,7 @@ function addPostToFeed(postobject){
     // Like button creation
     const likebutton = document.createElement("button");
     likebutton.className = "like-btn";
+    likebutton.id = postobject.post_id;
 
     //Visuals of the like button
     const heartspan = document.createElement("span");
@@ -33,7 +34,7 @@ function addPostToFeed(postobject){
     likebutton.appendChild(heartspan);
     const countspan = document.createElement("span");
     countspan.className = "like-count";
-    countspan.textContent = "0";
+    countspan.textContent = postobject.likes;
     likebutton.appendChild(countspan);
 
     //Visuals of resolve button
@@ -45,12 +46,40 @@ function addPostToFeed(postobject){
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
+    // Comment toggle button
+    const commentToggle = document.createElement("button");
+    commentToggle.className = "comment-toggle";
+    commentToggle.textContent = "▼ Comments";
+
+// Comment container (hidden by default)
+    const commentSection = document.createElement("div");
+    commentSection.className = "comment-section hidden";
+
+// Textarea
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = "Write a comment...";
+
+// Submit button
+    const submitComment = document.createElement("button");
+    submitComment.textContent = "Post Comment";
+    submitComment.className = "submit-comment";
+
+// Single comment display
+    const singleComment = document.createElement("div");
+    singleComment.className = "single-comment";
+
+// Load saved comment
+    if (postobject.comment) {
+        singleComment.textContent = postobject.comment;
+    }
+
+    commentSection.append(textarea, submitComment, singleComment);
 
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        article.append(h2, time,img, p, likebutton, resolvebutton);
-    }else{article.append(h2, time, p, likebutton, resolvebutton);}
+        article.append(h2, time, img, p, likebutton, commentToggle, commentSection, resolvebutton);
+    }else{article.append(h2, time, p, likebutton, commentToggle, commentSection, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
 }
@@ -65,7 +94,8 @@ function PostObj(title, description, image) {
         }),
         image,
         post_id: crypto.randomUUID(),
-        likes: 0
+        likes: 0,
+        comment: ""
     };
 }
 function createPost(title, description, image){
@@ -142,6 +172,13 @@ document.addEventListener('click', function (e) {
         }
         // Update the like count display
         countSpan.textContent = count;
+        const postId = button.id;
+        const post = posts.find(p => p.post_id === postId);
+
+        if (post) {
+            post.likes = count;
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
     }
 
     // Resolve button interaction
@@ -166,6 +203,48 @@ document.addEventListener('click', function (e) {
         */
 
     }
+    // Toggle dropdown
+    if (e.target.classList.contains("comment-toggle")) {
+        const section = e.target.nextElementSibling;
+        section.classList.toggle("hidden");
+
+        // Flip arrow
+        e.target.textContent =
+            section.classList.contains("hidden")
+                ? "▼ Comments"
+                : "▲ Comments";
+    }
+
+    // Submit comment
+    if (e.target.classList.contains("submit-comment")) {
+        const section = e.target.closest(".comment-section");
+        const textarea = section.querySelector("textarea");
+        const singleComment = section.querySelector(".single-comment");
+        const text = textarea.value.trim();
+        if (!text) return;
+
+// Get post ID (use like button id since it exists on every post)
+        const article = e.target.closest("article");
+        const likeBtn = article.querySelector(".like-btn");
+        const postId = likeBtn.id;
+
+// Find post object
+        const post = posts.find(p => p.post_id === postId);
+
+        if (post) {
+            post.comment = text; // replace existing comment
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
+
+// Replace visible comment
+        singleComment.textContent = text;
+
+        textarea.value = "";
+    }
 });
-createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+if(localStorage.getItem("posts") === null) {
+    createPost("Goofy dumb cat istg", "", "https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+}
 createFeed();
+
+

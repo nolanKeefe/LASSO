@@ -109,28 +109,46 @@ header, footer {
   position: relative;
   flex: 1; /* Takes up all remaining space between header and footer */
   overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: visible;
   padding: 1rem 2rem;
   max-width: 800px; /* Controls the width of the content */
   width: 100%;
   margin: 0 auto; /* Centers it horizontally */
+  margin-top:10px;
 }
 
 /* Post Stylization */
 .post-list {
-    list-style: none; /* Removes bullet points */
-    padding: 0;      /* Removes left padding */
-    margin: 0;       /* Removes margins */
+  list-style: none; /* Removes bullet points */
+  padding: 0;      /* Removes left padding */
+  margin: 0;       /* Removes margins */
+  padding-top:250px;
+    
 }
 
 .post-list li {
-    margin-bottom: 20px; /* Adds space between list items */
+    margin-top:250;
+    margin-bottom: 290px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
-    background: white;
-
+    position: relative;        /* Needed for the pseudo-element */
+    overflow: visible;         /* Allows image to exceed the border */
 }
 
+.post-list li::before {
+    content: "";
+    position: absolute;
+    top: -250px;               /* How much it exceeds the top */
+    left: -1vw;              /* How much it exceeds the sides */
+    right: -1vw;
+    bottom: -10px;
+    background-image: url("Wanted poster.jpg");
+    background-size: cover;
+    background-position: top;
+    border-radius: 20px;
+    z-index: -1;              /* Sits behind the post content */
+}
 .post-list article h2 a{
     text-decoration: none; /* Removes the default underline from links */
     color: #333;
@@ -226,28 +244,30 @@ header, footer {
 
 /* Floating Modal Box */
 .floating {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  max-width: 90%;
-  background: #fff8f3;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  animation: fadeInScale 0.25s ease;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.comment-section {
+    margin-top: 10px;
 }
 
-/* Soft entrance animation */
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+.single-comment {
+    background: #f2f2f2;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.comment {
+    padding: 8px;
+    background: #f1f1f1;
+    margin-bottom: 6px;
+    border-radius: 6px;
 }
