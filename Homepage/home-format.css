@@ -144,3 +144,18 @@ header, footer {
     background-color: #e94560;
     color: white;
 }
+.hidden {
+    display: none;
+}
+
+.floating {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+}

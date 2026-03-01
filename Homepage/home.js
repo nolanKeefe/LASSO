@@ -1,13 +1,46 @@
 const list = document.getElementById("post-list");
+const feed = document.getElementById("post-list");
 const add_post_button = document.getElementById("add-post");
+const form = document.getElementById("postform");
+const box = document.getElementById("floatingBox");
 
+function PostObj(title, description) {
+    return {
+        title,
+        description,
+        date: new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }),
+        likes: 0
+    };
+}
+let posts = [];
 
+document.getElementById("showBox").addEventListener("click", () => {
+    box.classList.remove("hidden");
+});
+document.getElementById("closeBox").addEventListener("click", () => {
+    box.classList.add("hidden");
+});
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // stops page refresh
+
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    createPost(title, description);
+    createFeed();
+});
 //appends a post to the running list
-function addPost(){
-    let title = "Test";
+function createPost(title, description){
+    const newbie = new PostObj(title,description);
+    posts.push(newbie);
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+function addPost(postobject){
     let link = "";
-    let summary = "LUrasdf, ASfd Ipsum MOrebaginsd."
-    const ul = document.getElementById("post-list");
 
     const li = document.createElement("li");
 
@@ -16,15 +49,15 @@ function addPost(){
     const h2 = document.createElement("h2");
     const a = document.createElement("a");
     a.href = link;
-    a.textContent = title;
+    a.textContent = postobject.title;
     h2.appendChild(a);
 
     const time = document.createElement("time");
     //time.dateTime = new Date();
-    time.textContent = new Date().toLocaleDateString();
+    time.textContent = postobject.date;
 
     const p = document.createElement("p");
-    p.textContent = summary;
+    p.textContent = postobject.description;
 
     const button = document.createElement("button");
     button.className = "like-btn";
@@ -40,7 +73,7 @@ function addPost(){
 
     article.append(h2, time, p, button);
     li.appendChild(article);
-    ul.appendChild(li);
+    feed.appendChild(li);
 
 }
 // Smooth scroll for nav links
@@ -93,6 +126,7 @@ document.addEventListener('click', function (e) {
         }
     });
 });*/
-add_post_button.addEventListener("click", function () {
-    addPost();
-})
+function createFeed(){
+    feed.replaceChildren();
+    posts.forEach(post => {addPost(post);});
+}
