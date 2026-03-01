@@ -22,5 +22,25 @@
         </nav>
     </header>
 
+    <main class="scroll-container">
+        <!-- A list of posts. Unsure how Jackson is making it update so im just gonna make a single post -->
+        <ul class = "resolved-list" id="resolved-list">
+            <!--  Each post is an article as it makes them individually contained -->
+            <!-- image post example -->
+            <li>
+                <article>
+                    <h2><a href="post1.html">Goofy dumb cat istg</a></h2>
+                    <time datetime="2026-02-28">February 28, 2026</time><!-- Static time rn -->
+                    <!-- Placeholder image, will be replaced with actual post image -->
+                    <img src="https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Post image">
+                </article>
+            </li>
+        </ul>
+        <footer>
+            <p>You've scrolled so far we've run out of posts!</p> <!-- footer should remain here, whatever post we have goes above -->
+        </footer>
+    </main>
+
+    <script src="resolved.js"></script>
 </body>
 </html>
