@@ -154,6 +154,24 @@ header, footer {
     background-color: #e94560;
     color: white;
 }
+
+/* Resolve button stylization */
+.resolve-btn {
+    display: flex;
+    background: none;
+    border: 1px solid #1bc41b; /* dark border */
+    color: #1bc41b; /* dark text */
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+.resolve-btn.resolved { /* Style for resolved state */
+    background-color: #1bc41b;
+    color: white;
+}
+
 .hidden {
     display: none;
 }
