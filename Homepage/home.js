@@ -2,7 +2,7 @@ const feed = document.getElementById("post-list");
 const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
 //appends a post to the running list
-let posts = [];
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
 let resolved_posts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
 function addPostToFeed(postobject){
     let link = "";
@@ -167,5 +167,9 @@ document.addEventListener('click', function (e) {
 
     }
 });
-createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+if(localStorage.getItem("posts") === null) {
+    createPost("Goofy dumb cat istg", "", "https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+}
 createFeed();
+
+
