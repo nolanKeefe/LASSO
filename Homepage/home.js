@@ -1,48 +1,9 @@
 const feed = document.getElementById("post-list");
 const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
-
-function PostObj(title, description) {
-    return {
-        title,
-        description,
-        date: new Date().toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        }),
-        likes: 0,
-        resolved:false
-    };
-}
-
-// Load saved posts or default to empty arrays
-let posts = JSON.parse(localStorage.getItem("posts")) || [];
-let resolvedPosts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
-
-
-document.getElementById("showBox").addEventListener("click", () => {
-    box.classList.remove("hidden");
-});
-document.getElementById("closeBox").addEventListener("click", () => {
-    box.classList.add("hidden");
-});
-form.addEventListener("submit", function (event) {
-    event.preventDefault(); // stops page refresh
-
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    createPost(title, description);
-    createFeed();
-});
 //appends a post to the running list
-function createPost(title, description){
-    const newbie = new PostObj(title,description);
-    posts.push(newbie);
-    localStorage.setItem("posts", JSON.stringify(posts));
-}
-
-function addPost(postobject){
+let posts = [];
+function addPostToFeed(postobject){
     let link = "";
 
     const li = document.createElement("li");
@@ -79,41 +40,62 @@ function addPost(postobject){
     countspan.textContent = "0";
     likebutton.appendChild(countspan);
 
-    // RESOLVE BUTTON
+    //Visuals of resolve button
     const resolvebutton = document.createElement("button");
     resolvebutton.className = "resolve-btn";
-    resolvebutton.textContent = "Resolve ✓";
 
-    resolvebutton.addEventListener("click", () => {
+    const resolvespan = document.createElement("span");
+    resolvespan.className = "resolve";
+    resolvespan.textContent = "Resolve ✓";
+    resolvebutton.appendChild(resolvespan);
 
-        // Remove from active posts
-        const removedPost = posts.splice(index, 1)[0];
-
-        // Mark resolved
-        removedPost.resolved = true;
-
-        // Add to resolved posts
-        resolvedPosts.push(removedPost);
-
-        // Save both arrays
-        localStorage.setItem("posts", JSON.stringify(posts));
-        localStorage.setItem("resolvedPosts", JSON.stringify(resolvedPosts));
-
-        // Re-render feed
-        createFeed();
-    });
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        img.style.maxWidth = "50%";
-        article.append(h2, time,img, p, likebutton, resolvebutton);
+        article.append(h2, time,img, p, likebutton);
     }else{article.append(h2, time, p, likebutton, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
-
 }
+function PostObj(title, description, image) {
+    return {
+        title,
+        description,
+        date: new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }),
+        image,
+        likes: 0
+    };
+}
+function createPost(title, description, image){
+    const newbie = new PostObj(title,description, image);
+    posts.push(newbie);
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+function createFeed(){
+    feed.replaceChildren();
+    posts.forEach(post => {addPostToFeed(post);});
+}
+
+document.getElementById("showBox").addEventListener("click", () => {
+    box.classList.remove("hidden");
+});
+document.getElementById("closeBox").addEventListener("click", () => {
+    box.classList.add("hidden");
+});
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // stops page refresh
+    box.classList.add("hidden")
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const image = document.getElementById("imageURL").value;
+    createPost(title, description, image);
+    createFeed();
+});
 // Smooth scroll for nav links
-/*
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -121,7 +103,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         behavior: 'smooth'
         });
     });
-});*/
+});
 
 //obtains the accountType from local storage to determine which features show on homepage
 const accountType = localStorage.getItem("account-type");
@@ -171,7 +153,7 @@ document.addEventListener('click', function (e) {
         // Get which button it is
         const button = e.target.closest('.resolve-btn');
 
-        // check if the button is already resolved update visuals accordingly
+        // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('resolved')) {
             button.classList.remove('resolved');
         } else {
@@ -179,28 +161,5 @@ document.addEventListener('click', function (e) {
         }
     }
 });
-// Button interaction
-/*document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const countSpan = this.querySelector('.like-count');
-        let count = parseInt(countSpan.textContent);
-
-        if (this.classList.contains('liked')) {
-        // Unlike
-            countSpan.textContent = count - 1;
-            this.innerHTML = `♡ <span class="like-count">${count - 1}</span>`;
-            this.classList.remove('liked');
-        } else {
-            // Like
-            countSpan.textContent = count + 1;
-            this.innerHTML = `♥ <span class="like-count">${count + 1}</span>`;
-            this.classList.add('liked');
-        }
-    });
-});*/
-function createFeed(){
-    feed.replaceChildren();
-    posts.forEach(post => {addPost(post);});
-}
 createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
 createFeed();
