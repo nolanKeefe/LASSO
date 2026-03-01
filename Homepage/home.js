@@ -1,7 +1,9 @@
 const feed = document.getElementById("post-list");
 const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
+const select = document.getElementById("orderSelect");
 //appends a post to the running list
+let sortstat = "Alphabetical";
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
 let resolved_posts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
 function addPostToFeed(postobject){
@@ -105,6 +107,10 @@ function createPost(title, description, image){
 }
 function createFeed(){
     feed.replaceChildren();
+    if(sortstat === "Alphabetical"){
+        posts.sort((a, b) =>
+            a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
+    }else{posts.sort((a, b) => b.likes - a.likes);}
     posts.forEach(post => {addPostToFeed(post);});
 }
 
@@ -241,6 +247,14 @@ document.addEventListener('click', function (e) {
 
         textarea.value = "";
     }
+});
+select.addEventListener("change", function () {
+    if(select.value === "Alphabetical"){
+    sortstat = "Alphabetical";
+    }else{
+        sortstat = "Most Liked";
+    }
+    createFeed();
 });
 if(localStorage.getItem("posts") === null) {
     createPost("Goofy dumb cat istg", "", "https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");

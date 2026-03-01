@@ -14,6 +14,10 @@ body {
 
   background-size: cover;
   background-position: center;
+  height: 100vh; /* Makes body fill the full screen height */
+  overflow: hidden; /* Prevents the whole page from scrolling */
+  
+  
   background-image: url("desert_background.jpg");
   background-repeat: no-repeat;
   
