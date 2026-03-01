@@ -98,6 +98,7 @@ header, footer {
 .scroll-container {
   flex: 1; /* Takes up all remaining space between header and footer */
   overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: visible;
   padding: 1rem 2rem;
   max-width: 800px; /* Controls the width of the content */
   width: 100%;
@@ -107,9 +108,10 @@ header, footer {
 
 /* Post Stylization */
 .post-list {
-    list-style: none; /* Removes bullet points */
-    padding: 0;      /* Removes left padding */
-    margin: 0;       /* Removes margins */
+  list-style: none; /* Removes bullet points */
+  padding: 0;      /* Removes left padding */
+  margin: 0;       /* Removes margins */
+  padding-top:250px;
     
 }
 
