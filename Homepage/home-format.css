@@ -19,8 +19,18 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #1a1a2e;
-  color: white;
+  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  color: rgb(255, 255, 255);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
 }
 
 .nav-links {
@@ -35,12 +45,12 @@ nav {
 }
 
 .nav-links a:hover {
-  color: #e94560;
+  color: rgb(117, 38, 195);
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: #e94560;
+  color: rgb(117, 38, 195);
   font-weight: bold;
 }
 
