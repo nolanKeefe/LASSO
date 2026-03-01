@@ -34,7 +34,7 @@ function addPostToFeed(postobject){
     likebutton.appendChild(heartspan);
     const countspan = document.createElement("span");
     countspan.className = "like-count";
-    countspan.textContent = "0";
+    countspan.textContent = postobject.likes;
     likebutton.appendChild(countspan);
 
     //Visuals of resolve button
@@ -172,6 +172,13 @@ document.addEventListener('click', function (e) {
         }
         // Update the like count display
         countSpan.textContent = count;
+        const postId = button.id;
+        const post = posts.find(p => p.post_id === postId);
+
+        if (post) {
+            post.likes = count;
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
     }
 
     // Resolve button interaction
