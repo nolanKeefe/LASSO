@@ -17,8 +17,11 @@ resolvedPosts.forEach(post => {
 
     const p = document.createElement("p");
     p.textContent = post.description;
-
-    article.append(h2, time, p);
+    if (post.image) {
+        const img = document.createElement("img");
+        img.src = post.image;
+        article.append(h2, time,img, p);
+    }else{article.append(h2, time, p);}
     li.appendChild(article);
     resolvedList.appendChild(li);
 });
