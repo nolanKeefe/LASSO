@@ -26,7 +26,7 @@ document.getElementById("closeBox").addEventListener("click", () => {
 });
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // stops page refresh
-
+    box.classList.add("hidden")
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
     createPost(title, description);
