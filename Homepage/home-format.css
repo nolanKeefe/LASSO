@@ -279,11 +279,13 @@ header, footer {
 #orderSelect:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 25px rgba(146, 74, 54, 0.4);
+  background-color: rgba(177, 124, 67);
 }
 
 #orderSelect:active {
   transform: translateY(0);
   box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
+  background-color: rgba(177, 124, 67);
 }
 
 
