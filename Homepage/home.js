@@ -259,7 +259,7 @@ select.addEventListener("change", function () {
     createFeed();
 });
 if(localStorage.getItem("posts") === null) {
-    createPost("Goofy dumb cat istg", "", "https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+    createPost("Evil and nefarious sidewalk crack", "", "https://www.petruzelo.com/pics/tips/cracked-sidewalk.jpg");
 }
 createFeed();
 
