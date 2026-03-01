@@ -52,7 +52,7 @@ function addPostToFeed(postobject){
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        img.style.maxWidth = "25%";
+        img.style.maxWidth = "50%";
         article.append(h2, time,img, p, likebutton);
     }else{article.append(h2, time, p, likebutton, resolvebutton);}
     li.appendChild(article);
