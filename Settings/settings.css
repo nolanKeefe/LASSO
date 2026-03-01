@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
+  background: #f7c898;
 }
 
 /* Navigation */

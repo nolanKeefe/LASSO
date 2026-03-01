@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
+  background: #f7c898;
 }
 
 /* Navigation */
@@ -110,6 +111,7 @@ header, footer {
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
+    background: white;
 
 }
 
