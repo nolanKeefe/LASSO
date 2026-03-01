@@ -3,20 +3,17 @@ const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
 //appends a post to the running list
 let posts = [];
+let resolved_posts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
 function addPostToFeed(postobject){
     let link = "";
-
     const li = document.createElement("li");
-
     const article = document.createElement("article");
-
     // Title of the post
     const h2 = document.createElement("h2");
     const a = document.createElement("a");
     a.href = link;
     a.textContent = postobject.title;
     h2.appendChild(a);
-
     // Date of the post
     const time = document.createElement("time");
     //time.dateTime = new Date();
@@ -25,7 +22,6 @@ function addPostToFeed(postobject){
     //Description of the post
     const p = document.createElement("p");
     p.textContent = postobject.description;
-
     // Like button creation
     const likebutton = document.createElement("button");
     likebutton.className = "like-btn";
@@ -43,6 +39,7 @@ function addPostToFeed(postobject){
     //Visuals of resolve button
     const resolvebutton = document.createElement("button");
     resolvebutton.className = "resolve-btn";
+    resolvebutton.id = postobject.post_id;
 
     const resolvespan = document.createElement("span");
     resolvespan.className = "resolve";
@@ -52,7 +49,7 @@ function addPostToFeed(postobject){
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        article.append(h2, time,img, p, likebutton);
+        article.append(h2, time,img, p, likebutton, resolvebutton);
     }else{article.append(h2, time, p, likebutton, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
@@ -67,6 +64,7 @@ function PostObj(title, description, image) {
             year: "numeric"
         }),
         image,
+        post_id: crypto.randomUUID(),
         likes: 0
     };
 }
@@ -152,13 +150,21 @@ document.addEventListener('click', function (e) {
 
         // Get which button it is
         const button = e.target.closest('.resolve-btn');
+        resolved_posts.push(posts.find(p => p.post_id === button.id));
+        localStorage.setItem("resolvedPosts", JSON.stringify(resolved_posts));
+        posts = posts.filter(post => post.post_id !== button.id);
 
+        localStorage.setItem("posts", JSON.stringify(posts));
+        createFeed();
+        /*
         // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('resolved')) {
             button.classList.remove('resolved');
         } else {
             button.classList.add('resolved');
         }
+        */
+
     }
 });
 createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
