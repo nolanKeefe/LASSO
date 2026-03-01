@@ -19,7 +19,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  background: linear-gradient(135deg, #924A36, #e16e47);
   color: rgb(255, 255, 255);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
@@ -45,15 +45,14 @@ nav {
 }
 
 .nav-links a:hover {
-  color: rgb(117, 38, 195);
+  color: #37120a;
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: rgb(117, 38, 195);
+  color: #37120a;
   font-weight: bold;
 }
-
 
 
 .hidden {
