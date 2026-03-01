@@ -43,25 +43,17 @@ function addPostToFeed(postobject){
     const resolvebutton = document.createElement("button");
     resolvebutton.className = "resolve-btn";
     resolvebutton.id = postobject.post_id;
+    const accountType = localStorage.getItem("account-type");
 
+    if (accountType !== "government") {
+        resolvebutton.style.display = "none";
+    }
     const resolvespan = document.createElement("span");
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
 
-    //obtains the accountType from local storage to determine which features show on homepage
-    const accountType = localStorage.getItem("account-type");
-    if (accountType === "government") {
-        // Show government-specific features
-        document.querySelectorAll('.resolve-btn').forEach(button => {
-            button.style.display = 'inline-block';
-        });
-    } else {
-        // Hide government-specific features
-        document.querySelectorAll('.resolve-btn').forEach(button => {
-            button.style.display = 'none';
-        });
-        }
+
 
     // Comment toggle button
     const commentToggle = document.createElement("button");
@@ -259,7 +251,7 @@ select.addEventListener("change", function () {
     createFeed();
 });
 if(localStorage.getItem("posts") === null) {
-    createPost("Evil and nefarious sidewalk crack", "", "https://www.petruzelo.com/pics/tips/cracked-sidewalk.jpg");
+    createPost("Evil sidewalk crack", "Ooooh scary", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZMcXt9fEox8NzAkF1bpDOFgN_t1akCYOoA&s");
 }
 createFeed();
 
