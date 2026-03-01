@@ -96,6 +96,7 @@ header, footer {
   max-width: 800px; /* Controls the width of the content */
   width: 100%;
   margin: 0 auto; /* Centers it horizontally */
+  margin-top:10px;
 }
 
 /* Post Stylization */
@@ -103,16 +104,32 @@ header, footer {
     list-style: none; /* Removes bullet points */
     padding: 0;      /* Removes left padding */
     margin: 0;       /* Removes margins */
+    
 }
 
 .post-list li {
-    margin-bottom: 20px; /* Adds space between list items */
+    margin-top:250;
+    margin-bottom: 290px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
-
+    position: relative;        /* Needed for the pseudo-element */
+    overflow: visible;         /* Allows image to exceed the border */
 }
 
+.post-list li::before {
+    content: "";
+    position: absolute;
+    top: -250px;               /* How much it exceeds the top */
+    left: -1vw;              /* How much it exceeds the sides */
+    right: -1vw;
+    bottom: -10px;
+    background-image: url("Wanted poster.jpg");
+    background-size: cover;
+    background-position: top;
+    border-radius: 20px;
+    z-index: -1;              /* Sits behind the post content */
+}
 .post-list article h2 a{
     text-decoration: none; /* Removes the default underline from links */
     color: #333;
