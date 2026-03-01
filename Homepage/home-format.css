@@ -9,9 +9,11 @@ body {
   color: #333;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Makes body fill the full screen height */
-  overflow: hidden; /* Prevents the whole page from scrolling */
-  
+  height:100vh;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
   background-image: url("desert_background.jpg");
   background-repeat: no-repeat;
   background-size:100% auto;
@@ -95,7 +97,16 @@ header, footer {
   flex-shrink: 0; /* Stops header/footer from shrinking */
 }
 
+.content-area {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;   /* space between button and container */
+  padding: 1rem 2rem;
+  flex: 1;
+}
+
 .scroll-container {
+  position: relative;
   flex: 1; /* Takes up all remaining space between header and footer */
   overflow-y: auto; /* Enables vertical scrolling */
   padding: 1rem 2rem;
@@ -183,14 +194,60 @@ header, footer {
     display: none;
 }
 
+/* Add Post Button */
+#showBox {
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  align-self: flex-start; /* pushes it left */
+  margin: 1rem 1rem 1rem 1.5rem;
+
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #e16e47, #924A36);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+#showBox:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(146, 74, 54, 0.4);
+}
+
+#showBox:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
+}
+
+/* Floating Modal Box */
 .floating {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 90%;
+  background: #fff8f3;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  animation: fadeInScale 0.25s ease;
+}
+
+/* Soft entrance animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }

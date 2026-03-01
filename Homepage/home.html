@@ -22,7 +22,7 @@
         </ul>
         </nav>
     </header>
-    <button id="showBox">Show Box</button>
+    
 
     <div id="floatingBox" class="floating hidden">
         <form id="postform">
@@ -37,15 +37,19 @@
 
         <button id="closeBox">Close</button>
     </div>
-    <main class="scroll-container">
-        <!-- A list of posts. Unsure how Jackson is making it update so im just gonna make a single post -->
-        <ul class = "post-list" id="post-list">
-            <!--  Each post is an article as it makes them individually contained -->
-        </ul>
-        <footer>
-            <p>You've scrolled so far we've run out of posts!</p> <!-- footer should remain here, whatever post we have goes above -->
-        </footer>
-    </main>
+    <div class="content-container">
+        <button id="showBox">Add Post</button>
+        <main class="scroll-container">
+            <!-- A list of posts. Unsure how Jackson is making it update so im just gonna make a single post -->
+            <ul class = "post-list" id="post-list">
+                <!--  Each post is an article as it makes them individually contained -->
+            </ul>
+            <footer>
+                <p>You've scrolled so far we've run out of posts!</p> <!-- footer should remain here, whatever post we have goes above -->
+            </footer>
+        </main>
+    </div>
+    
 
     <script src="home.js"></script> <!-- Links the js file to the html -->
 </body>
