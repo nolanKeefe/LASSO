@@ -9,9 +9,17 @@ body {
   color: #333;
   display: flex;
   flex-direction: column;
+  height:100vh;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
-  background: #f7c898;
+  
+  
+  background-image: url("../Homepage/desert_background.jpg");
+  background-repeat: no-repeat;
 }
 
 /* Navigation */
@@ -81,8 +89,10 @@ nav {
 footer {
   text-align: center;
   padding: 1.5rem;
-  background-color: #1a1a2e;
-  color: white;
+  border-radius: 20px;
+  background-color: rgba(243, 188, 130, 0.5);
+  background-image:url("../Homepage/tumbleeweed-image.png");
+  background-size: 150px;
 }
 
 

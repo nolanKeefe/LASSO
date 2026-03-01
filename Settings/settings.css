@@ -9,9 +9,17 @@ body {
   color: #333;
   display: flex;
   flex-direction: column;
+  height:100vh;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
-  background: #f7c898;
+  
+  
+  background-image: url("../Homepage/desert_background.jpg");
+  background-repeat: no-repeat;
 }
 
 /* Navigation */
