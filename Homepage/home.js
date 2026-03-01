@@ -1,61 +1,19 @@
-const list = document.getElementById("post-list");
 const feed = document.getElementById("post-list");
-const add_post_button = document.getElementById("add-post");
 const form = document.getElementById("postform");
 const box = document.getElementById("floatingBox");
-
-function PostObj(title, description) {
-    return {
-        title,
-        description,
-        date: new Date().toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        }),
-        likes: 0
-    };
-}
-let posts = [];
-
-document.getElementById("showBox").addEventListener("click", () => {
-    box.classList.remove("hidden");
-});
-document.getElementById("closeBox").addEventListener("click", () => {
-    box.classList.add("hidden");
-});
-form.addEventListener("submit", function (event) {
-    event.preventDefault(); // stops page refresh
-
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    createPost(title, description);
-    createFeed();
-});
 //appends a post to the running list
-function createPost(title, description){
-    const newbie = new PostObj(title,description);
-    posts.push(newbie);
-    localStorage.setItem("posts", JSON.stringify(posts));
-}
-
-function addPost(postobject){
+let posts = [];
+let resolved_posts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
+function addPostToFeed(postobject){
     let link = "";
-    let summary = "LUrasdf, ASfd Ipsum MOrebaginsd."
-    let resolved = false; // all posts intialize as unresolved
-    const ul = document.getElementById("post-list");
-
     const li = document.createElement("li");
-
     const article = document.createElement("article");
-
     // Title of the post
     const h2 = document.createElement("h2");
     const a = document.createElement("a");
     a.href = link;
     a.textContent = postobject.title;
     h2.appendChild(a);
-
     // Date of the post
     const time = document.createElement("time");
     //time.dateTime = new Date();
@@ -64,7 +22,6 @@ function addPost(postobject){
     //Description of the post
     const p = document.createElement("p");
     p.textContent = postobject.description;
-
     // Like button creation
     const likebutton = document.createElement("button");
     likebutton.className = "like-btn";
@@ -82,20 +39,61 @@ function addPost(postobject){
     //Visuals of resolve button
     const resolvebutton = document.createElement("button");
     resolvebutton.className = "resolve-btn";
+    resolvebutton.id = postobject.post_id;
 
     const resolvespan = document.createElement("span");
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
 
-
-    article.append(h2, time, p, likebutton, resolvebutton);
+    if (postobject.image) {
+        const img = document.createElement("img");
+        img.src = postobject.image;
+        article.append(h2, time,img, p, likebutton, resolvebutton);
+    }else{article.append(h2, time, p, likebutton, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
-
 }
+function PostObj(title, description, image) {
+    return {
+        title,
+        description,
+        date: new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }),
+        image,
+        post_id: crypto.randomUUID(),
+        likes: 0
+    };
+}
+function createPost(title, description, image){
+    const newbie = new PostObj(title,description, image);
+    posts.push(newbie);
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+function createFeed(){
+    feed.replaceChildren();
+    posts.forEach(post => {addPostToFeed(post);});
+}
+
+document.getElementById("showBox").addEventListener("click", () => {
+    box.classList.remove("hidden");
+});
+document.getElementById("closeBox").addEventListener("click", () => {
+    box.classList.add("hidden");
+});
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // stops page refresh
+    box.classList.add("hidden")
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const image = document.getElementById("imageURL").value;
+    createPost(title, description, image);
+    createFeed();
+});
 // Smooth scroll for nav links
-/*
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -103,15 +101,15 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         behavior: 'smooth'
         });
     });
-});*/
+});
 
 //obtains the accountType from local storage to determine which features show on homepage
-const accountType = localStorage.getItem("account-type"); 
+const accountType = localStorage.getItem("account-type");
 if (accountType === "government") {
     // Show government-specific features
     document.querySelectorAll('.resolve-btn').forEach(button => {
         button.style.display = 'inline-block';
-    }); 
+    });
 } else {
     // Hide government-specific features
     document.querySelectorAll('.resolve-btn').forEach(button => {
@@ -130,7 +128,7 @@ document.addEventListener('click', function (e) {
         const heart = button.querySelector('.heart');
 
         // read current like count
-        let count = parseInt(countSpan.textContent);
+        let count = parseInt(countSpan.textContent || "0");
 
         // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('liked')) {
@@ -152,35 +150,22 @@ document.addEventListener('click', function (e) {
 
         // Get which button it is
         const button = e.target.closest('.resolve-btn');
+        resolved_posts.push(posts.find(p => p.post_id === button.id));
+        localStorage.setItem("resolvedPosts", JSON.stringify(resolved_posts));
+        posts = posts.filter(post => post.post_id !== button.id);
 
+        localStorage.setItem("posts", JSON.stringify(posts));
+        createFeed();
+        /*
         // check if the button is already liked and update count and visuals accordingly
         if (button.classList.contains('resolved')) {
             button.classList.remove('resolved');
         } else {
             button.classList.add('resolved');
         }
+        */
+
     }
 });
-// Button interaction
-/*document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const countSpan = this.querySelector('.like-count');
-        let count = parseInt(countSpan.textContent);
-
-        if (this.classList.contains('liked')) {
-        // Unlike
-            countSpan.textContent = count - 1;
-            this.innerHTML = `♡ <span class="like-count">${count - 1}</span>`;
-            this.classList.remove('liked');
-        } else {
-            // Like
-            countSpan.textContent = count + 1;
-            this.innerHTML = `♥ <span class="like-count">${count + 1}</span>`;
-            this.classList.add('liked');
-        }
-    });
-});*/
-function createFeed(){
-    feed.replaceChildren();
-    posts.forEach(post => {addPost(post);});
-}
+createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+createFeed();

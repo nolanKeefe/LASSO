@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
+  background: #f7c898;
 }
 
 /* Navigation */
@@ -19,7 +20,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  background: linear-gradient(135deg, #924A36, #e16e47);
   color: rgb(255, 255, 255);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
@@ -45,12 +46,12 @@ nav {
 }
 
 .nav-links a:hover {
-  color: rgb(117, 38, 195);
+  color: #37120a;
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: rgb(117, 38, 195);
+  color: #37120a;
   font-weight: bold;
 }
 
@@ -99,37 +100,38 @@ header, footer {
 }
 
 /* Post Stylization */
-.post-list {
+.resolved-list {
     list-style: none; /* Removes bullet points */
     padding: 0;      /* Removes left padding */
     margin: 0;       /* Removes margins */
 }
 
-.post-list li {
+.resolved-list li {
     margin-bottom: 20px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
+    background: white;
 
 }
 
-.post-list article h2 a{
+.resolved-list article h2 a{
     text-decoration: none; /* Removes the default underline from links */
     color: #333;
 }
 
-.post-list article p {
+.resolved-list article p {
     line-height: 1.4; /* Improves readability */
 }
 
-.post-list article img {
+.resolved-list article img {
     /* Ensures images don't overflow their container */
     max-width: 50%;
     height: auto;    /* Maintains aspect ratio */
     margin-top: 10px; /* Adds space above images */
     
 }
-.post-list article time {
+.resolved-list article time {
     display: block; /* Makes the time element take up its own line */
     margin-top: 10px; 
     font-size: 0.9em; 
