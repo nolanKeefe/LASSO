@@ -216,9 +216,20 @@ header, footer {
     display: none;
 }
 
-/* Add Post Button */
+.top-controls {
+  /*position: sticky;*/
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+}
+
 #showBox {
-  position: sticky;
+  /*position: sticky;*/
   top: 0;
   left: 0;
 
@@ -245,6 +256,36 @@ header, footer {
   transform: translateY(0);
   box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
 }
+
+#orderSelect {
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  align-self: flex-end; /* pushes it left */
+  margin: 1rem 1.5rem 1rem 1rem;
+
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #e16e47, #924A36);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+#orderSelect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(146, 74, 54, 0.4);
+}
+
+#orderSelect:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
+}
+
 
 /* Floating Modal Box */
 .floating {
