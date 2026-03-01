@@ -22,7 +22,8 @@
         </ul>
         </nav>
     </header>
-    <button id="showBox">Add Post</button>
+    <!--<button id="showBox">Add Post</button> -->
+    
 
     <div id="floatingBox" class="floating hidden">
         <form id="postform">
@@ -37,11 +38,21 @@
 
         <button id="closeBox">Close</button>
     </div>
-    <label for="orderSelect"></label>
+    <!--<label for="orderSelect"></label>
     <select id="orderSelect">
         <option value="Alphabetical">Alphabetical</option>
         <option value="Most Liked">Most Liked</option>
-    </select>
+    </select> -->
+
+    <div class="top-controls">
+        <button id="showBox">Add Post</button>
+    
+        <select id="orderSelect">
+            <option value="Alphabetical">Alphabetical</option>
+            <option value="Most Liked">Most Liked</option>
+        </select>
+    </div>
+    
     <main class="scroll-container">
         <!-- A list of posts. Unsure how Jackson is making it update so im just gonna make a single post -->
         <ul class = "post-list" id="post-list">

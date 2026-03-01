@@ -9,9 +9,17 @@ body {
   color: #333;
   display: flex;
   flex-direction: column;
+  height:100vh;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
-  background: #f7c898;
+  
+  
+  background-image: url("../Homepage/desert_background.jpg");
+  background-repeat: no-repeat;
 }
 
 /* Navigation */
@@ -58,4 +66,33 @@ nav {
 
 .hidden {
     display: none;
+}
+
+#lasso-button {
+  /*position: sticky;*/
+  top: 0;
+  left: 0;
+
+  align-self: center; 
+  margin: 1rem 1rem 1rem 1.5rem;
+
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #e16e47, #924A36);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+#lasso-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(146, 74, 54, 0.4);
+}
+
+#lasso-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
 }
