@@ -13,10 +13,18 @@ function PostObj(title, description) {
             day: "numeric",
             year: "numeric"
         }),
-        likes: 0
+        likes: 0,
+        resolved:false
     };
 }
+/*
 let posts = [];
+let resolvedPosts = [];
+*/
+
+// Load saved posts or default to empty arrays
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
+let resolvedPosts = JSON.parse(localStorage.getItem("resolvedPosts")) || [];
 
 document.getElementById("showBox").addEventListener("click", () => {
     box.classList.remove("hidden");
@@ -39,7 +47,7 @@ function createPost(title, description){
     localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-function addPost(postobject){
+function addPost(postobject, index){
     let link = "";
     let summary = "LUrasdf, ASfd Ipsum MOrebaginsd."
     let resolved = false; // all posts intialize as unresolved
@@ -79,6 +87,7 @@ function addPost(postobject){
     countspan.textContent = "0";
     likebutton.appendChild(countspan);
 
+    /*
     //Visuals of resolve button
     const resolvebutton = document.createElement("button");
     resolvebutton.className = "resolve-btn";
@@ -87,7 +96,31 @@ function addPost(postobject){
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
+    */
 
+    // RESOLVE BUTTON
+    const resolvebutton = document.createElement("button");
+    resolvebutton.className = "resolve-btn";
+    resolvebutton.textContent = "Resolve ✓";
+
+    resolvebutton.addEventListener("click", () => {
+
+        // Remove from active posts
+        const removedPost = posts.splice(index, 1)[0];
+
+        // Mark resolved
+        removedPost.resolved = true;
+
+        // Add to resolved posts
+        resolvedPosts.push(removedPost);
+
+        // Save both arrays
+        localStorage.setItem("posts", JSON.stringify(posts));
+        localStorage.setItem("resolvedPosts", JSON.stringify(resolvedPosts));
+
+        // Re-render feed
+        createFeed();
+    });
 
     article.append(h2, time, p, likebutton, resolvebutton);
     li.appendChild(article);
@@ -153,7 +186,7 @@ document.addEventListener('click', function (e) {
         // Get which button it is
         const button = e.target.closest('.resolve-btn');
 
-        // check if the button is already liked and update count and visuals accordingly
+        // check if the button is already resolved update visuals accordingly
         if (button.classList.contains('resolved')) {
             button.classList.remove('resolved');
         } else {
@@ -182,5 +215,11 @@ document.addEventListener('click', function (e) {
 });*/
 function createFeed(){
     feed.replaceChildren();
-    posts.forEach(post => {addPost(post);});
+
+    posts.forEach((post, index) => {
+        addPost(post, index);
+    });
 }
+
+// Load feed when page opens
+createFeed();
