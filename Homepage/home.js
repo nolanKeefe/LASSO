@@ -46,12 +46,40 @@ function addPostToFeed(postobject){
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
+    // Comment toggle button
+    const commentToggle = document.createElement("button");
+    commentToggle.className = "comment-toggle";
+    commentToggle.textContent = "▼ Comments";
+
+// Comment container (hidden by default)
+    const commentSection = document.createElement("div");
+    commentSection.className = "comment-section hidden";
+
+// Textarea
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = "Write a comment...";
+
+// Submit button
+    const submitComment = document.createElement("button");
+    submitComment.textContent = "Post Comment";
+    submitComment.className = "submit-comment";
+
+// Single comment display
+    const singleComment = document.createElement("div");
+    singleComment.className = "single-comment";
+
+// Load saved comment
+    if (postobject.comment) {
+        singleComment.textContent = postobject.comment;
+    }
+
+    commentSection.append(textarea, submitComment, singleComment);
 
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        article.append(h2, time,img, p, likebutton, resolvebutton);
-    }else{article.append(h2, time, p, likebutton, resolvebutton);}
+        article.append(h2, time, img, p, likebutton, commentToggle, commentSection, resolvebutton);
+    }else{article.append(h2, time, p, likebutton, commentToggle, commentSection, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
 }
@@ -66,7 +94,8 @@ function PostObj(title, description, image) {
         }),
         image,
         post_id: crypto.randomUUID(),
-        likes: 0
+        likes: 0,
+        comment: ""
     };
 }
 function createPost(title, description, image){
@@ -166,6 +195,44 @@ document.addEventListener('click', function (e) {
         }
         */
 
+    }
+    // Toggle dropdown
+    if (e.target.classList.contains("comment-toggle")) {
+        const section = e.target.nextElementSibling;
+        section.classList.toggle("hidden");
+
+        // Flip arrow
+        e.target.textContent =
+            section.classList.contains("hidden")
+                ? "▼ Comments"
+                : "▲ Comments";
+    }
+
+    // Submit comment
+    if (e.target.classList.contains("submit-comment")) {
+        const section = e.target.closest(".comment-section");
+        const textarea = section.querySelector("textarea");
+        const singleComment = section.querySelector(".single-comment");
+        const text = textarea.value.trim();
+        if (!text) return;
+
+// Get post ID (use like button id since it exists on every post)
+        const article = e.target.closest("article");
+        const likeBtn = article.querySelector(".like-btn");
+        const postId = likeBtn.id;
+
+// Find post object
+        const post = posts.find(p => p.post_id === postId);
+
+        if (post) {
+            post.comment = text; // replace existing comment
+            localStorage.setItem("posts", JSON.stringify(posts));
+        }
+
+// Replace visible comment
+        singleComment.textContent = text;
+
+        textarea.value = "";
     }
 });
 if(localStorage.getItem("posts") === null) {
