@@ -48,6 +48,21 @@ function addPostToFeed(postobject){
     resolvespan.className = "resolve";
     resolvespan.textContent = "Resolve ✓";
     resolvebutton.appendChild(resolvespan);
+
+    //obtains the accountType from local storage to determine which features show on homepage
+    const accountType = localStorage.getItem("account-type");
+    if (accountType === "government") {
+        // Show government-specific features
+        document.querySelectorAll('.resolve-btn').forEach(button => {
+            button.style.display = 'inline-block';
+        });
+    } else {
+        // Hide government-specific features
+        document.querySelectorAll('.resolve-btn').forEach(button => {
+            button.style.display = 'none';
+        });
+        }
+
     // Comment toggle button
     const commentToggle = document.createElement("button");
     commentToggle.className = "comment-toggle";
@@ -139,19 +154,6 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
-//obtains the accountType from local storage to determine which features show on homepage
-const accountType = localStorage.getItem("account-type");
-if (accountType === "government") {
-    // Show government-specific features
-    document.querySelectorAll('.resolve-btn').forEach(button => {
-        button.style.display = 'inline-block';
-    });
-} else {
-    // Hide government-specific features
-    document.querySelectorAll('.resolve-btn').forEach(button => {
-        button.style.display = 'none';
-    });
-    }
 
 document.addEventListener('click', function (e) {
     // Like button interaction
