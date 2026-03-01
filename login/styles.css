@@ -9,7 +9,7 @@
   /* Page Background */
   body {
     height: 100vh;
-    background: linear-gradient(135deg, #ac4edf, #83cae9);
+    background: linear-gradient(135deg, #924A36, #e16e47);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,9 +53,9 @@
   /* Focus effect */
   input:focus,
   select:focus {
-    border-color: #4e73df;
+    border-color: #C3976A;
     outline: none;
-    box-shadow: 0 0 5px rgba(78, 115, 223, 0.3);
+    box-shadow: 0 0 5px #956b40;
   }
   
   /* Buttons */
@@ -65,7 +65,7 @@
     margin-top: 15px;
     border: none;
     border-radius: 6px;
-    background-color: #4e73df;
+    background-color: #dfa266;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -74,16 +74,16 @@
   }
   
   button:hover {
-    background-color: #2e59d9;
+    background-color: #e6814b;
   }
   
   /* Secondary Button (like make account button on login page) */
   #makeAccountButton {
-    background-color: #858796;
+    background-color: #968d85;
   }
   
   #makeAccountButton:hover {
-    background-color: #6c757d;
+    background-color: #7d736c;
   }
   
   /* Error Message */

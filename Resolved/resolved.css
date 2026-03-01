@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
+  background: #f7c898;
 }
 
 /* Navigation */
@@ -19,7 +20,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  background: linear-gradient(135deg, #924A36, #e16e47);
   color: rgb(255, 255, 255);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
@@ -45,12 +46,12 @@ nav {
 }
 
 .nav-links a:hover {
-  color: rgb(117, 38, 195);
+  color: #37120a;
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: rgb(117, 38, 195);
+  color: #37120a;
   font-weight: bold;
 }
 
@@ -106,13 +107,30 @@ header, footer {
 }
 
 .resolved-list li {
-    margin-bottom: 20px; /* Adds space between list items */
+    margin-top:250;
+    margin-bottom: 290px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
-
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;        /* Needed for the pseudo-element */
+    overflow: visible;         /* Allows image to exceed the border */
 }
 
+.resolved-list li::before {
+    content: "";
+    position: absolute;
+    top: -250px;               /* How much it exceeds the top */
+    left: -1vw;              /* How much it exceeds the sides */
+    right: -1vw;
+    bottom: -10px;
+    background-image: url("../Homepage/Wanted poster.jpg");
+    background-size: cover;
+    background-position: top;
+    border-radius: 20px;
+    z-index: -1;              /* Sits behind the post content */
+}
 .resolved-list article h2 a{
     text-decoration: none; /* Removes the default underline from links */
     color: #333;
