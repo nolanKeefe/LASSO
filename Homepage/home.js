@@ -69,6 +69,20 @@ function addPost(){
     });
 });*/
 
+//obtains the accountType from local storage to determine which features show on homepage
+const accountType = localStorage.getItem("account-type"); 
+if (accountType === "government") {
+    // Show government-specific features
+    document.querySelectorAll('.resolve-btn').forEach(button => {
+        button.style.display = 'inline-block';
+    }); 
+} else {
+    // Hide government-specific features
+    document.querySelectorAll('.resolve-btn').forEach(button => {
+        button.style.display = 'none';
+    });
+    }
+
 document.addEventListener('click', function (e) {
     // Like button interaction
     if (e.target.closest('.like-btn')) {
