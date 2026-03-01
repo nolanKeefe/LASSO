@@ -11,6 +11,10 @@ body {
   flex-direction: column;
   height: 100vh; /* Makes body fill the full screen height */
   overflow: hidden; /* Prevents the whole page from scrolling */
+  
+  background-image: url("desert_background.jpg");
+  background-repeat: no-repeat;
+  background-size:100% auto;
 }
 
 /* Navigation */
@@ -19,7 +23,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ac4edf, #83cae9);
+  background: linear-gradient(135deg, #924A36, #e16e47);
   color: rgb(255, 255, 255);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
@@ -45,12 +49,12 @@ nav {
 }
 
 .nav-links a:hover {
-  color: rgb(117, 38, 195);
+  color: #37120a;
 }
 
 /* Active link styling */
 .nav-links a.active {
-  color: rgb(117, 38, 195);
+  color: #37120a;
   font-weight: bold;
 }
 
@@ -80,8 +84,10 @@ nav {
 footer {
   text-align: center;
   padding: 1.5rem;
-  background-color: #1a1a2e;
-  color: white;
+  border-radius: 20px;
+  background-color: rgba(243, 188, 130, 0.5);
+  background-image:url("tumbleeweed-image.png");
+  background-size: 150px;
 }
 
 
@@ -110,6 +116,7 @@ header, footer {
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
     padding: 15px;
+    background: white;
 
 }
 
