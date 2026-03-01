@@ -27,24 +27,34 @@ function addPostToFeed(postobject){
     p.textContent = postobject.description;
 
     // Like button creation
-    const button = document.createElement("button");
-    button.className = "like-btn";
+    const likebutton = document.createElement("button");
+    likebutton.className = "like-btn";
 
     //Visuals of the like button
     const heartspan = document.createElement("span");
     heartspan.className = "heart";
     heartspan.textContent = "♡";
-    button.appendChild(heartspan);
+    likebutton.appendChild(heartspan);
     const countspan = document.createElement("span");
     countspan.className = "like-count";
     countspan.textContent = "0";
-    button.appendChild(countspan);
+    likebutton.appendChild(countspan);
+
+    //Visuals of resolve button
+    const resolvebutton = document.createElement("button");
+    resolvebutton.className = "resolve-btn";
+
+    const resolvespan = document.createElement("span");
+    resolvespan.className = "resolve";
+    resolvespan.textContent = "Resolve ✓";
+    resolvebutton.appendChild(resolvespan);
+
     if (postobject.image) {
         const img = document.createElement("img");
         img.src = postobject.image;
-        img.style.maxWidth = "100%";
-        article.append(h2, time,img, p, button);
-    }else{article.append(h2, time, p, button);}
+        img.style.maxWidth = "25%";
+        article.append(h2, time,img, p, likebutton);
+    }else{article.append(h2, time, p, likebutton, resolvebutton);}
     li.appendChild(article);
     feed.appendChild(li);
 }
@@ -95,7 +105,23 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         });
     });
 });
+
+//obtains the accountType from local storage to determine which features show on homepage
+const accountType = localStorage.getItem("account-type");
+if (accountType === "government") {
+    // Show government-specific features
+    document.querySelectorAll('.resolve-btn').forEach(button => {
+        button.style.display = 'inline-block';
+    });
+} else {
+    // Hide government-specific features
+    document.querySelectorAll('.resolve-btn').forEach(button => {
+        button.style.display = 'none';
+    });
+    }
+
 document.addEventListener('click', function (e) {
+    // Like button interaction
     if (e.target.closest('.like-btn')) {
         //check if the clicked button is like button
 
@@ -120,4 +146,21 @@ document.addEventListener('click', function (e) {
         // Update the like count display
         countSpan.textContent = count;
     }
+
+    // Resolve button interaction
+    if (e.target.closest('.resolve-btn')) {
+        //check if the clicked button is a resolve button
+
+        // Get which button it is
+        const button = e.target.closest('.resolve-btn');
+
+        // check if the button is already liked and update count and visuals accordingly
+        if (button.classList.contains('resolved')) {
+            button.classList.remove('resolved');
+        } else {
+            button.classList.add('resolved');
+        }
+    }
 });
+createPost("Goofy dumb cat istg", "","https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg");
+createFeed();
