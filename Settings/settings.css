@@ -59,3 +59,32 @@ nav {
 .hidden {
     display: none;
 }
+
+#lasso-button {
+  /*position: sticky;*/
+  top: 0;
+  left: 0;
+
+  align-self: center; 
+  margin: 1rem 1rem 1rem 1.5rem;
+
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #e16e47, #924A36);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+#lasso-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(146, 74, 54, 0.4);
+}
+
+#lasso-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 15px rgba(146, 74, 54, 0.3);
+}
