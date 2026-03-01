@@ -6,6 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="home-format.css">
+        <title>LASSO</title>
     </head>
     <body>
 
@@ -21,9 +22,20 @@
         </ul>
         </nav>
     </header>
+    <button id="showBox">Show Box</button>
 
+    <div id="floatingBox" class="floating hidden">
+        <form id="postform">
+            <label for="title">Post Title:</label>
+            <input type="text" id="title" name="title"><br><br>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <button id="closeBox">Close</button>
+    </div>
     <main class="scroll-container">
-      <button type="button" id="add-post">New Post</button>
         <!-- A list of posts. Unsure how Jackson is making it update so im just gonna make a single post -->
         <ul class = "post-list" id="post-list">
             <!--  Each post is an article as it makes them individually contained -->
@@ -36,15 +48,6 @@
                     <img src="https://ih1.redbubble.net/image.5607603630.2658/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Post image">
                     <button class="like-btn"><span class = "heart">♡</span><span class="like-count">0</span></button>
                     <button class="resolve-btn">Resolve</button>
-                </article>
-            </li>
-            <!-- basic text post formatting -->
-             <li>
-                <article>
-                    <h2><a href="post2.html">Title of Post 2</a></h2> <!-- post2.html should bring you into the post -->
-                    <time datetime="2026-02-27">February 27, 2026</time>
-                    <p>Post summary</p>
-                    <button class="like-btn"><span class = "heart">♡</span><span class="like-count">0</span></button>
                 </article>
             </li>
         </ul>
