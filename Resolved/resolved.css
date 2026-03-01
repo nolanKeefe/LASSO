@@ -99,13 +99,13 @@ header, footer {
 }
 
 /* Post Stylization */
-.post-list {
+.resolved-list {
     list-style: none; /* Removes bullet points */
     padding: 0;      /* Removes left padding */
     margin: 0;       /* Removes margins */
 }
 
-.post-list li {
+.resolved-list li {
     margin-bottom: 20px; /* Adds space between list items */
     border: 2px solid #000000; /* adds a border around each post */
     border-radius: 20px;
@@ -113,23 +113,23 @@ header, footer {
 
 }
 
-.post-list article h2 a{
+.resolved-list article h2 a{
     text-decoration: none; /* Removes the default underline from links */
     color: #333;
 }
 
-.post-list article p {
+.resolved-list article p {
     line-height: 1.4; /* Improves readability */
 }
 
-.post-list article img {
+.resolved-list article img {
     /* Ensures images don't overflow their container */
     max-width: 50%;
     height: auto;    /* Maintains aspect ratio */
     margin-top: 10px; /* Adds space above images */
     
 }
-.post-list article time {
+.resolved-list article time {
     display: block; /* Makes the time element take up its own line */
     margin-top: 10px; 
     font-size: 0.9em; 
