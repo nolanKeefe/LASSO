@@ -212,3 +212,20 @@ header, footer {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     z-index: 1000;
 }
+.comment-section {
+    margin-top: 10px;
+}
+
+.single-comment {
+    background: #f2f2f2;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.comment {
+    padding: 8px;
+    background: #f1f1f1;
+    margin-bottom: 6px;
+    border-radius: 6px;
+}
